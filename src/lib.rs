@@ -63,6 +63,9 @@ pub enum Backend {
 
     /// Cauchy base Read-Solomon erasure coding provided by `jerasure` library (default).
     JerasureRsCauchy,
+
+    /// ISA-L TODO test
+    IsaLRsVand,
 }
 impl Default for Backend {
     /// `Backend::JerasureRsCauchy`を返す.
@@ -143,6 +146,7 @@ impl Builder {
         let backend_id = match self.backend {
             Backend::JerasureRsCauchy => c_api::EcBackendId::JERASURE_RS_CAUCHY,
             Backend::JerasureRsVand => c_api::EcBackendId::JERASURE_RS_VAND,
+            Backend::IsaLRsVand => c_api::EcBackendId::LIBERASURECODE_RS_VAND,
         };
         let checksum_type = match self.checksum {
             Checksum::None => c_api::EcChecksumType::NONE,
